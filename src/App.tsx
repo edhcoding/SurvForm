@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { SurveyStoreProvider } from "@/store";
 import EditPage from "@/pages/EditPage";
 import AdminPage from "@/pages/AdminPage";
+import CreatePage from "@/pages/CreatePage";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <SurveyStoreProvider>
         <MainLayout>
           <Routes>
+            <Route path="/surveys/new" element={<CreatePage />} />
             <Route path="/surveys/:surveyId" element={<AdminPage />}>
               <Route path="edit" element={<EditPage />} />
               <Route path="responses" element={<div>hi</div>} />

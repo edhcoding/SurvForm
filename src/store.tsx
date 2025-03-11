@@ -1,16 +1,20 @@
 import { makeAutoObservable } from "mobx";
 import { createContext, PropsWithChildren, useContext } from "react";
 import Section from "./models/section";
+import callApi from "@/utils/api";
+import { SectionData } from "@/types/app";
 
 class SurveyStore {
   sections: Section[];
   focusedSectionId: number | null;
+  emailCollected: boolean;
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
 
     this.sections = [new Section()];
     this.focusedSectionId = this.sections[0].id;
+    this.emailCollected = false;
   }
 
   addSection() {
@@ -31,6 +35,15 @@ class SurveyStore {
     if (section) {
       section.addQuestion();
     }
+  }
+
+  fetchSurvey(id: number) {
+    callApi<{ sections: SectionData[]; emailCollected: boolean }>(
+      `/surveys/${id}`
+    ).then(({ sections, emailCollected }) => {
+      this.sections = sections.map((section) => new Section(section));
+      this.emailCollected = emailCollected ?? false;
+    });
   }
 }
 

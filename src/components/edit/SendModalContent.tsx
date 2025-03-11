@@ -6,6 +6,7 @@ import Panel, {
 import CloseIcon from "@/assets/icons/close.svg?react";
 import Dropdown from "@/components/common/Dropdown";
 import Button from "@/components/common/Button";
+import callApi from "@/utils/api";
 
 interface Props {
   surveyId: number;
@@ -25,9 +26,14 @@ export default function SendModalContent({
     onClose();
   };
 
-  // const handleChangeEmailCollected = (value: boolean) => {
-  //   // TODO: 이메일 수집 여부 변경
-  // };
+  const handleChangeEmailCollected = (value: boolean) => {
+    callApi(`/surveys/${surveyId}`, {
+      method: "PATCH",
+      body: {
+        emailCollected: value,
+      },
+    });
+  };
 
   return (
     <Panel className="text-gray900">
@@ -46,7 +52,7 @@ export default function SendModalContent({
               { label: "수집하지 않음", value: false },
               { label: "수집함", value: true },
             ]}
-            // onChange={handleChangeEmailCollected}
+            onChange={handleChangeEmailCollected}
           />
         </div>
         <div className="flex flex-col">
