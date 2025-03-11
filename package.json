@@ -4,8 +4,12 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "classnames": "^2.5.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-hook-form": "7.52.0",
+    "react-router": "6.25.1",
+    "react-router-dom": "6.25.1"
   },
   "scripts": {
     "dev": "vite",

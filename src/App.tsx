@@ -1,24 +1,26 @@
-import logo from "./logo.svg";
+import MainLayout from "@/components/common/MainLayout";
 import "./App.css";
+import Tabs, {
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+} from "@/components/common/Tabs";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MainLayout>
+      <Tabs>
+        <TabList>
+          <Tab index={0}>탭 1</Tab>
+          <Tab index={2}>탭 1</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel index={0}>탭 1</TabPanel>
+          <TabPanel index={1}>탭 2</TabPanel>
+        </TabPanels>
+      </Tabs>
+    </MainLayout>
   );
 }
 
