@@ -1,9 +1,5 @@
+import Panel, { PanelCap } from "@/components/common/Panel";
 import { Link, useParams, useSearchParams } from "react-router-dom";
-import Panel, {
-  PanelBody,
-  PanelCap,
-  PanelHeader,
-} from "@/components/common/Panel";
 
 export default function CompletePage() {
   const [searchParams] = useSearchParams();
@@ -13,10 +9,10 @@ export default function CompletePage() {
     <div>
       <PanelCap></PanelCap>
       <Panel className="text-gray900">
-        <PanelHeader className="mb-12 font-semibold text-24">
+        <Panel.Header className="mb-12 font-semibold text-24">
           <h5>{searchParams.get("title")}</h5>
-        </PanelHeader>
-        <PanelBody>
+        </Panel.Header>
+        <Panel.Body>
           <p className="mb-17">응답이 기록되었습니다.</p>
           <Link
             className="inline-block py-2 text-blue-500 border-b-blue-500 border-b-1"
@@ -24,7 +20,7 @@ export default function CompletePage() {
           >
             다른 응답 제출
           </Link>
-        </PanelBody>
+        </Panel.Body>
       </Panel>
     </div>
   );

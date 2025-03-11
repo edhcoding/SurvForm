@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import Section from "@/models/section";
 import Input from "@/components/common/Input";
-import Panel, { PanelBody, PanelCap } from "@/components/common/Panel";
+import Panel, { PanelCap } from "@/components/common/Panel";
 
 interface Props {
   capTitle: string;
@@ -16,7 +16,7 @@ const SectionTitleEditor = observer(function SectionTitleEditor({
     <div>
       <PanelCap>{capTitle}</PanelCap>
       <Panel>
-        <PanelBody className="flex flex-col">
+        <Panel.Body className="flex flex-col">
           <Input
             value={section.title}
             onChange={(e) => section.setTitle(e.currentTarget.value)}
@@ -27,7 +27,7 @@ const SectionTitleEditor = observer(function SectionTitleEditor({
             onChange={(e) => section.setDescription(e.currentTarget.value)}
             className="py-3 text-gray700 text-16"
           />
-        </PanelBody>
+        </Panel.Body>
       </Panel>
     </div>
   );

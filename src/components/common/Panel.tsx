@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 import cn from "classnames";
 
-export default function Panel({ className, children }: PropsWithChildren<Cn>) {
+function Panel({ className, children }: PropsWithChildren<Cn>) {
   return (
     <div
       className={cn(
@@ -14,15 +14,24 @@ export default function Panel({ className, children }: PropsWithChildren<Cn>) {
   );
 }
 
-export function PanelHeader({ className, children }: PropsWithChildren<Cn>) {
+Panel.Header = function PanelHeader({
+  className,
+  children,
+}: PropsWithChildren<Cn>) {
   return <div className={className}>{children}</div>;
-}
+};
 
-export function PanelBody({ className, children }: PropsWithChildren<Cn>) {
+Panel.Body = function PanelBody({
+  className,
+  children,
+}: PropsWithChildren<Cn>) {
   return <div className={className}>{children}</div>;
-}
+};
 
-export function PanelFooter({ className, children }: PropsWithChildren<Cn>) {
+Panel.Footer = function PanelFooter({
+  className,
+  children,
+}: PropsWithChildren<Cn>) {
   return (
     <>
       {/* hr 태그는 수평선을 만드는 태그 */}
@@ -30,7 +39,9 @@ export function PanelFooter({ className, children }: PropsWithChildren<Cn>) {
       <div className={className}>{children}</div>
     </>
   );
-}
+};
+
+export default Panel;
 
 export function PanelCap({ children }: PropsWithChildren) {
   return (
