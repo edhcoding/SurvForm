@@ -1,21 +1,28 @@
 import MainLayout from "@/components/common/MainLayout";
 import "./App.css";
-import Tabs from "@/components/common/Tabs";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { SurveyStoreProvider } from "@/store";
 
 function App() {
   return (
-    <MainLayout>
-      <Tabs>
-        <Tabs.TabList>
-          <Tabs.Tab index={0}>탭 1</Tabs.Tab>
-          <Tabs.Tab index={1}>탭 2</Tabs.Tab>
-        </Tabs.TabList>
-        <Tabs.TabPanels>
-          <Tabs.TabPanel index={0}>탭 1</Tabs.TabPanel>
-          <Tabs.TabPanel index={1}>탭 2</Tabs.TabPanel>
-        </Tabs.TabPanels>
-      </Tabs>
-    </MainLayout>
+    <BrowserRouter>
+      <SurveyStoreProvider>
+        <MainLayout>
+          <Routes>
+            <Route path="/surveys/new" element={<CreatePage />} />
+            <Route path="/surveys/:surveyId" element={<FormPage />} />
+            <Route path="/surveys/:surveyId" element={<AdminPage />}>
+              <Route path="edit" element={<EditPage />} />
+              <Route path="responses" element={<StatisticsPage />} />
+            </Route>
+            <Route
+              path="/surveys/:surveyId/complete"
+              element={<CompletePage />}
+            />
+          </Routes>
+        </MainLayout>
+      </SurveyStoreProvider>
+    </BrowserRouter>
   );
 }
 
