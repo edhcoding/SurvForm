@@ -9,9 +9,7 @@ export function getStatistics(
       const sectionResponse = cur[section.id];
 
       section.questions.forEach((question) => {
-        if (!acc[section.id]) {
-          acc[section.id] = {};
-        }
+        if (!acc[section.id]) acc[section.id] = {};
 
         if (question.type === "longText") {
           const responseValue = sectionResponse[question.id] as string;

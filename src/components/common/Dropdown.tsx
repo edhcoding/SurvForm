@@ -70,7 +70,7 @@ interface DropdownContextType<T = unknown> {
 
 const DropdownContext = createContext<DropdownContextType | null>(null);
 
-function DropdownButton({ placeholder = "select" }: { placeholder?: string }) {
+function DropdownButton({ placeholder = "선택" }: { placeholder?: string }) {
   const { open, options, selected } = useContext(DropdownContext)!;
 
   return (

@@ -12,7 +12,8 @@
     "react-dom": "^19.0.0",
     "react-hook-form": "7.52.0",
     "react-router": "6.25.1",
-    "react-router-dom": "6.25.1"
+    "react-router-dom": "6.25.1",
+    "recharts": "^2.15.1"
   },
   "scripts": {
     "dev": "vite-node --watch src/server/index.ts",
