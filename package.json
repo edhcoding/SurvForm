@@ -5,6 +5,8 @@
   "type": "module",
   "dependencies": {
     "classnames": "^2.5.1",
+    "mobx": "^6.13.6",
+    "mobx-react-lite": "^4.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "7.52.0",
