@@ -1,6 +1,6 @@
 import MainLayout from "@/components/common/MainLayout";
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { SurveyStoreProvider } from "@/store";
 import EditPage from "@/pages/EditPage";
 import AdminPage from "@/pages/AdminPage";
@@ -8,6 +8,7 @@ import CreatePage from "@/pages/CreatePage";
 import FormPage from "@/pages/FormPage";
 import CompletePage from "@/pages/CompletePage";
 import StatisticsPage from "@/pages/StatisticsPage";
+import Home from "@/pages/Home";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <SurveyStoreProvider>
         <MainLayout>
           <Routes>
+            <Route path="/" element={<Home />} />
             <Route path="/surveys/new" element={<CreatePage />} />
             <Route path="/surveys/:surveyId" element={<FormPage />} />
             <Route path="/surveys/:surveyId" element={<AdminPage />}>
@@ -25,6 +27,7 @@ function App() {
               path="/surveys/:surveyId/complete"
               element={<CompletePage />}
             />
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </MainLayout>
       </SurveyStoreProvider>
