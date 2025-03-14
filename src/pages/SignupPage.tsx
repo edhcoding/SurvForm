@@ -1,7 +1,6 @@
 import app from "@/firebaseApp";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import { FormEvent } from "react";
-import { FieldValue, SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
