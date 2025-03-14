@@ -36,7 +36,8 @@
       "@common/*": ["src/components/common/*"],
       "@edit/*": ["src/components/edit/*"],
       "@form/*": ["src/components/form/*"],
-      "@statistics/*": ["src/components/statistics/*"]
+      "@statistics/*": ["src/components/statistics/*"],
+      "@context/*": ["src/context/*"]
     }
   },
   "include": ["src"],
