@@ -9,10 +9,8 @@ export default function FormPage() {
   const { surveyId = "" } = useParams<{ surveyId: string }>();
 
   useEffect(() => {
-    const id = parseInt(surveyId, 10);
-
-    if (id) {
-      surveyStore.fetchSurvey(id);
+    if (surveyId) {
+      surveyStore.fetchSurvey(surveyId);
     }
   }, [surveyId, surveyStore]);
 

@@ -3,9 +3,12 @@ import Dropdown from "@/components/common/Dropdown";
 import Button from "@/components/common/Button";
 import callApi from "@/utils/api";
 import Panel from "@/components/common/Panel";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "@/firebaseApp";
+import { toast } from "react-toastify";
 
 interface Props {
-  surveyId: number;
+  surveyId: string;
   emailCollected: boolean;
   onClose: () => void;
 }
@@ -22,13 +25,20 @@ export default function SendModalContent({
     onClose();
   };
 
-  const handleChangeEmailCollected = (value: boolean) => {
-    callApi(`/surveys/${surveyId}`, {
-      method: "PATCH",
-      body: {
-        emailCollected: value,
-      },
+  const handleChangeEmailCollected = async (value: boolean) => {
+    // callApi(`/surveys/${surveyId}`, {
+    //   method: "PATCH",
+    //   body: {
+    //     emailCollected: value,
+    //   },
+    // });
+    const docRef = doc(db, "surveys", surveyId);
+
+    await updateDoc(docRef, {
+      emailCollected: value,
     });
+
+    toast.success(`${value ? "이메일을 수집" : "이메일 수집을 중단"}합니다.`);
   };
 
   return (

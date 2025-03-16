@@ -49,6 +49,7 @@ export default class Section implements SectionData {
         new Question({
           ...question,
           id: Date.now(),
+          title: "",
         })
       );
   }

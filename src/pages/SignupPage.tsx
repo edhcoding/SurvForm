@@ -36,7 +36,7 @@ export default function SignupPage() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="absolute w-full -translate-y-1/2 top-1/2 "
+      className="absolute w-full -translate-y-1/2 top-1/2"
     >
       <h1 className="font-medium text-center text-32 mb-30">회원가입</h1>
       <div className="relative flex flex-col space-y-4 mb-30">

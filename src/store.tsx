@@ -1,8 +1,10 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import { createContext, PropsWithChildren, useContext } from "react";
 import Section from "./models/section";
 import callApi from "@/utils/api";
 import { SectionData } from "@/types/app";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/firebaseApp";
 
 class SurveyStore {
   sections: Section[];
@@ -37,13 +39,33 @@ class SurveyStore {
     }
   }
 
-  fetchSurvey(id: number) {
-    callApi<{ sections: SectionData[]; emailCollected: boolean }>(
-      `/surveys/${id}`
-    ).then(({ sections, emailCollected }) => {
-      this.sections = sections.map((section) => new Section(section));
-      this.emailCollected = emailCollected ?? false;
-    });
+  async fetchSurvey(surveyId: string) {
+    // callApi<{ sections: SectionData[]; emailCollected: boolean }>(
+    //   `/surveys/${id}`
+    // ).then(({ sections, emailCollected }) => {
+    //   this.sections = sections.map((section) => new Section(section));
+    //   this.emailCollected = emailCollected ?? false;
+    // });
+    const docRef = doc(db, "surveys", surveyId);
+
+    const docSnap = await getDoc(docRef);
+
+    // exists: 데이터 존재여부
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+
+      const newSections = data.sections.map(
+        (section: SectionData) => new Section(section)
+      );
+
+      runInAction(() => {
+        this.sections = newSections;
+        this.focusedSectionId = newSections[0]?.id || null;
+        this.emailCollected = data.emailCollected;
+      });
+    } else {
+      console.log("No such document!");
+    }
   }
 }
 

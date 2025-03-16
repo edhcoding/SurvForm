@@ -1,5 +1,5 @@
 import { toJS } from "mobx";
-import SectionEditorList from "@/components/edit/SectionListEditor";
+import SectionListEditor from "@/components/edit/SectionListEditor";
 import { useSurveyStore } from "@/store";
 import callApi from "@/utils/api";
 import { useEffect, useState } from "react";
@@ -7,34 +7,59 @@ import { useLocation, useParams } from "react-router";
 import Button from "@/components/common/Button";
 import Modal from "@/components/common/Modal";
 import SendModalContent from "@/components/edit/SendModalContent";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "@/firebaseApp";
+import { toast } from "react-toastify";
+import { observer } from "mobx-react-lite";
+import { FormProvider, useForm } from "react-hook-form";
 
-export default function EditPage() {
+function EditPage() {
   const { hash } = useLocation();
   const [opened, setOpened] = useState<boolean>(hash === "#send");
 
   const surveyStore = useSurveyStore();
 
+  const methods = useForm({ mode: "onChange" });
+
   const { surveyId = "" } = useParams<{ surveyId: string }>();
 
   useEffect(() => {
-    const id = parseInt(surveyId, 10);
-
-    if (id) {
-      surveyStore.fetchSurvey(id);
+    if (surveyId) {
+      surveyStore.fetchSurvey(surveyId);
     }
   }, [surveyId, surveyStore]);
 
-  const handleSubmit = () => {
-    callApi(`/surveys/${surveyId}`, {
-      method: "PUT",
-      body: toJS({ sections: surveyStore.sections }),
-    }).then(() => {
-      setOpened(true);
+  const handleSubmit = async () => {
+    // callApi(`/surveys/${surveyId}`, {
+    //   method: "PUT",
+    //   body: toJS({ sections: surveyStore.sections }),
+    // }).then(() => {
+    //   setOpened(true);
+    // });
+    const docRef = doc(db, "surveys", surveyId);
+
+    const sectionsData = toJS(surveyStore.sections).map((section) => {
+      return {
+        ...section,
+        questions: section.questions.map((question) => {
+          return {
+            ...question,
+            options: question.options ?? [],
+          };
+        }),
+      };
     });
+
+    await updateDoc(docRef, {
+      sections: sectionsData,
+    });
+
+    setOpened(true);
+    toast.success("설문지가 수정되었습니다.");
   };
 
   return (
-    <>
+    <FormProvider {...methods}>
       <Button
         type="button"
         onClick={handleSubmit}
@@ -42,14 +67,16 @@ export default function EditPage() {
       >
         보내기
       </Button>
-      <SectionEditorList></SectionEditorList>
+      <SectionListEditor />
       <Modal opend={opened}>
         <SendModalContent
           emailCollected={surveyStore.emailCollected}
-          surveyId={parseInt(surveyId, 10)}
+          surveyId={surveyId}
           onClose={() => setOpened(false)}
         />
       </Modal>
-    </>
+    </FormProvider>
   );
 }
+
+export default observer(EditPage);

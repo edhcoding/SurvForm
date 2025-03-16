@@ -5,13 +5,15 @@ import { observer } from "mobx-react-lite";
 import { QuestionData, SectionData } from "@/types/app";
 import callApi from "@/utils/api";
 import { useNavigate, useParams } from "react-router";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "@/firebaseApp";
 
 const SectionListView = observer(function SectionListView() {
   const [currentSection, setCurrentSection] = useState(0);
   const data = useRef<
     Record<SectionData["id"], Record<QuestionData["id"], string | string[]>>
   >({});
-  const { surveyId } = useParams<{ surveyId: string }>();
+  const { surveyId = "" } = useParams<{ surveyId: string }>();
   const navigate = useNavigate();
 
   const surveyStore = useSurveyStore();
@@ -20,14 +22,29 @@ const SectionListView = observer(function SectionListView() {
 
   const handleNext = async () => {
     if (last) {
-      await callApi(`/surveys/${surveyId}/responses`, {
-        method: "POST",
-        body: data.current,
-      });
+      // await callApi(`/surveys/${surveyId}/responses`, {
+      //   method: "POST",
+      //   body: data.current,
+      // });
 
-      navigate(
-        `/surveys/${surveyId}/complete?title=${surveyStore.sections[0].title}`
-      );
+      try {
+        const docRef = doc(db, "surveys", surveyId);
+
+        await updateDoc(docRef, {
+          responses: data.current,
+          updatedAt: new Date().toLocaleDateString("ko", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+          }),
+        });
+
+        navigate(
+          `/surveys/${surveyId}/complete?title=${surveyStore.sections[0].title}`
+        );
+      } catch (error) {
+        console.error(error);
+      }
 
       return;
     }

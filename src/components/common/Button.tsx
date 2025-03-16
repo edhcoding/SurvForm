@@ -14,7 +14,7 @@ export default function Button({
     <button
       type="button"
       className={cn(
-        "px-28 py-14 text-16 font-medium rounded-10 border",
+        "px-28 py-10 text-16 font-medium rounded-10 border",
         classes[variant],
         className
       )}

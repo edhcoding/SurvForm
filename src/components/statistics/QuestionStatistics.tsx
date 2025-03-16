@@ -15,9 +15,9 @@ export default function QuestionStatistics({ question, statistics }: Props) {
     return (
       <Panel className="text-gray900">
         <Panel.Header>
-          <h6 className="font-medium text-17 mb-18">{question.title}</h6>
-          <p className="text-gray800 text-16 mb-21">
-            응답 {typedStatistics.length}개
+          <h6 className="mb-8 font-medium text-24">{question.title}</h6>
+          <p className="mb-16 text-gray800 text-16">
+            (응답 {typedStatistics.length}개)
           </p>
         </Panel.Header>
         <Panel.Body className="flex flex-col gap-y-9">
@@ -42,8 +42,8 @@ export default function QuestionStatistics({ question, statistics }: Props) {
     return (
       <Panel className="text-gray900">
         <Panel.Header>
-          <h6 className="font-medium text-17 mb-18">{question.title}</h6>
-          <p className="text-gray800 text-16 mb-21">응답 {total}개</p>
+          <h6 className="mb-8 font-medium text-24">{question.title}</h6>
+          <p className="mb-16 text-gray800 text-16">(응답 {total}개)</p>
         </Panel.Header>
         <Panel.Body className="flex flex-col items-center gap-y-9">
           <PieChart width={410} height={250}>
@@ -64,7 +64,7 @@ export default function QuestionStatistics({ question, statistics }: Props) {
               verticalAlign="middle"
               layout="vertical"
               iconType="circle"
-              iconSize={16}
+              iconSize={12}
             />
           </PieChart>
         </Panel.Body>
@@ -73,7 +73,7 @@ export default function QuestionStatistics({ question, statistics }: Props) {
   }
 }
 
-const COLORS = ["#0D00A4", "#0D00A4CC", "#0D00A499", "#0D00A466", "#0D00A433"];
+const COLORS = ["#F43F5E", "#F43F5ECC", "#F43F5E99", "#F43F5E66", "#F43F5E33"];
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel: PieLabel = ({

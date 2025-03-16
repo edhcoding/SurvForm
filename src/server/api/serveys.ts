@@ -88,7 +88,7 @@ router.get("/:id/statistics", (req, res) => {
 
   const statistics: Statistics = getStatistics(sections, responses);
 
-  return res.json({ statistics, count: responses.length });
+  return res.json({ statistics });
 });
 
 export default router;

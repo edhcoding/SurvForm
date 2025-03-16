@@ -6,6 +6,9 @@ import SectionEditor from "@/components/edit/sectionEditor";
 const SectionListEditor = observer(function SectionListEditor() {
   const surveyStore = useSurveyStore();
 
+  // console.log("surveyStore", surveyStore);
+  // console.log("surveyStore.sections", surveyStore.sections);
+
   return (
     <div className="relative">
       <EditorMenu className="fixed sm:bottom-auto sm:top-[263px] sm:left-[calc(50%+340px)] bottom-30 left-[calc(100%-72px)]" />

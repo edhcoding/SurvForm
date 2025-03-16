@@ -19,17 +19,19 @@ const SectionEditor = observer(function SectionEditor({
   };
 
   return (
-    <div className="[&>*]:mb-24" onClick={handleClickContainer}>
-      <SectionTitleEditor section={section} capTitle={capTitle} />
-      {section.questions.map((question) => (
-        <QuestionEditor
-          key={question.id}
-          question={question}
-          onCopy={section.copyQuestion}
-          onDelete={section.removeQuestion}
-        />
-      ))}
-    </div>
+    <>
+      <div className="[&>*]:mb-24" onClick={handleClickContainer}>
+        <SectionTitleEditor section={section} capTitle={capTitle} />
+        {section.questions.map((question) => (
+          <QuestionEditor
+            key={question.id}
+            question={question}
+            onCopy={section.copyQuestion}
+            onDelete={section.removeQuestion}
+          />
+        ))}
+      </div>
+    </>
   );
 });
 
