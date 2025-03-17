@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import LoginPage from "@/pages/LoginPage";
 import SignupPage from "@/pages/SignupPage";
 import Loader from "@/components/common/Loader";
+import SurveyListPage from "@/pages/SurveyListPage";
 
 function App() {
   const auth = getAuth(app);
@@ -38,6 +39,10 @@ function App() {
             <>
               <Route path="/" element={<Home />} />
               <Route path="/surveys/new" element={<CreatePage />} />
+              <Route
+                path="/surveys/:userId/list"
+                element={<SurveyListPage />}
+              />
               <Route path="/surveys/:surveyId" element={<FormPage />} />
               <Route path="/surveys/:surveyId" element={<AdminPage />}>
                 <Route path="edit" element={<EditPage />} />

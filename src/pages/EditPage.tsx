@@ -1,7 +1,6 @@
 import { toJS } from "mobx";
 import SectionListEditor from "@/components/edit/SectionListEditor";
 import { useSurveyStore } from "@/store";
-import callApi from "@/utils/api";
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router";
 import Button from "@/components/common/Button";
@@ -63,9 +62,9 @@ function EditPage() {
       <Button
         type="button"
         onClick={handleSubmit}
-        className="absolute top-0 right-0"
+        className="absolute right-10 top-170"
       >
-        보내기
+        수정하기
       </Button>
       <SectionListEditor />
       <Modal opend={opened}>

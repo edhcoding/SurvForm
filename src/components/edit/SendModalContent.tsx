@@ -1,7 +1,6 @@
 import CloseIcon from "@/assets/icons/close.svg?react";
 import Dropdown from "@/components/common/Dropdown";
 import Button from "@/components/common/Button";
-import callApi from "@/utils/api";
 import Panel from "@/components/common/Panel";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/firebaseApp";

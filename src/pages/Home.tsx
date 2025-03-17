@@ -5,9 +5,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function Home() {
-  const user = useAuth();
-
   const auth = getAuth(app);
+
+  const user = useAuth();
 
   const navigate = useNavigate();
 
@@ -18,31 +18,35 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col gap-y-50">
-      <div className="flex items-center justify-between font-medium text-16">
-        <p className="text-main">User: {user?.email}</p>
+    <>
+      <h1 className="my-40 font-bold text-center select-none text-52 text-main">
+        SurvForm
+      </h1>
+      <div className="flex justify-end mb-30">
         <button
           type="button"
           onClick={handleLogout}
-          className="px-20 py-10 duration-300 border-4 border-black rounded-12 hover:bg-black hover:text-main"
+          className="px-10 py-5 duration-300 border-b-2 border-black hover:text-main hover:border-main"
         >
           로그아웃
         </button>
       </div>
-      <div className="flex flex-col items-center space-y-30">
-        <Link
-          to="/surveys/new"
-          className="w-full font-medium text-center transition-all duration-300 border-black shadow-lg border-5 py-30 rounded-12 text-20 hover:bg-black hover:text-main"
-        >
-          설문지 만들기
-        </Link>
-        <div>fsdaf</div>
-        <div>fsdaf</div>
-        <div>fsdaf</div>
-        <div>fsdaf</div>
-        <div>fsdaf</div>
-        <div>fsdaf</div>
+      <div className="flex flex-col">
+        <div className="flex flex-col items-center space-y-30">
+          <Link
+            to="/surveys/new"
+            className="w-full font-medium text-center transition-all duration-300 border-4 border-black shadow-lg py-50 rounded-12 text-16 hover:bg-black hover:text-white"
+          >
+            설문지 만들기
+          </Link>
+          <Link
+            to={`/surveys/${user?.uid}/list`}
+            className="w-full font-medium text-center transition-all duration-300 border-4 border-black shadow-lg py-50 rounded-12 text-16 hover:bg-black hover:text-white"
+          >
+            내가 만든 설문지 보기 (수정 / 통계)
+          </Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

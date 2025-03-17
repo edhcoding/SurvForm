@@ -31,9 +31,12 @@ export default function LoginPage() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="absolute w-full -translate-y-1/2 top-1/2 "
+      // className="absolute w-full -translate-y-1/2 top-1/2"
+      className="flex flex-col justify-center h-full my-auto"
     >
-      <h1 className="font-medium text-center text-32 mb-30">로그인</h1>
+      <h1 className="mb-40 font-bold text-center select-none text-52 text-main">
+        SurvForm
+      </h1>
       <div className="relative flex flex-col space-y-4 mb-30">
         <label htmlFor="email" className="font-medium text-16">
           이메일
@@ -84,12 +87,14 @@ export default function LoginPage() {
           </p>
         )}
       </div>
-      <Link
-        to="/signup"
-        className="underline text-14 text-gray600 underline-offset-4"
-      >
-        회원이 아니신가요?
-      </Link>
+      <div className="font-medium text-14">
+        <Link
+          to="/signup"
+          className="pb-4 border-b-2 text-gray600 hover:text-gray-800 hover:border-gray-800 border-gray600"
+        >
+          회원가입
+        </Link>
+      </div>
       <button
         type="submit"
         className="w-full py-20 mt-20 font-medium transition-all duration-300 border-2 border-black text-16 bg-bg2 hover:bg-black hover:text-white"

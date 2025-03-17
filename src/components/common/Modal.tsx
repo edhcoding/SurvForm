@@ -8,7 +8,7 @@ interface Props {
 export default function Modal({ children, opend }: PropsWithChildren<Props>) {
   return opend
     ? createPortal(
-        <div className="fixed inset-0 flex items-center justify-center size-full bg-black/30">
+        <div className="fixed inset-0 z-20 flex items-center justify-center size-full bg-black/30">
           <div className="z-10 bg-white rounded-10 max-w-[655px] w-full">
             {children}
           </div>

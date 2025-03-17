@@ -1,20 +1,30 @@
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import { NavLink, Outlet, useNavigate, useParams } from "react-router-dom";
 import cn from "classnames";
 import { PropsWithChildren } from "react";
 
 export default function AdminPage() {
   const params = useParams();
 
+  const navigate = useNavigate();
+
   return (
-    <div className="flex flex-col">
-      <div className="flex justify-center gap-x-20">
-        <Tab path={`/surveys/${params.surveyId}/edit`}>질문</Tab>
-        <Tab path={`/surveys/${params.surveyId}/responses`}>응답</Tab>
+    <>
+      <h1
+        onClick={() => navigate("/")}
+        className="my-40 font-bold text-center cursor-pointer select-none text-52 text-main"
+      >
+        SurvForm
+      </h1>
+      <div className="flex flex-col">
+        <div className="flex justify-center gap-x-20">
+          <Tab path={`/surveys/${params.surveyId}/edit`}>질문</Tab>
+          <Tab path={`/surveys/${params.surveyId}/responses`}>응답</Tab>
+        </div>
+        <div className="flex-1">
+          <Outlet />
+        </div>
       </div>
-      <div className="flex-1">
-        <Outlet />
-      </div>
-    </div>
+    </>
   );
 }
 

@@ -3,7 +3,6 @@ import { useSurveyStore } from "@/store";
 import SectionView from "@/components/form/SectionView";
 import { observer } from "mobx-react-lite";
 import { QuestionData, SectionData } from "@/types/app";
-import callApi from "@/utils/api";
 import { useNavigate, useParams } from "react-router";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/firebaseApp";

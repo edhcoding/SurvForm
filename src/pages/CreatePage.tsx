@@ -6,7 +6,6 @@ import { useNavigate } from "react-router";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "@/firebaseApp";
 import { toast } from "react-toastify";
-import callApi from "@/utils/api";
 import useAuth from "@/hooks/common/useAuth";
 import { FormProvider, useForm } from "react-hook-form";
 
@@ -64,11 +63,17 @@ export default function CreatePage() {
     <FormProvider {...methods}>
       <Button
         type="button"
+        className="absolute z-10 right-10 top-140"
         onClick={methods.handleSubmit(handleSubmit)}
-        className="absolute right-0 -top-30"
       >
-        설문지 생성하기
+        설문지 생성
       </Button>
+      <h1
+        onClick={() => navigate("/")}
+        className="my-40 font-bold text-center cursor-pointer select-none text-52 text-main"
+      >
+        SurvForm
+      </h1>
       <SectionListEditor />
     </FormProvider>
   );

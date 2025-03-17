@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import callApi from "@/utils/api";
-import { SectionData, Statistics, SurveyResponse } from "@/types/app";
+import { Statistics } from "@/types/app";
 import { useSurveyStore } from "@/store";
 import SectionListStatistics from "@/components/statistics/SectionListStatistics";
 import { doc, getDoc } from "firebase/firestore";
@@ -45,13 +44,24 @@ export default function StatisticsPage() {
         setStatistics(calculatedStatistics);
       } catch (error) {
         console.error(error);
-        toast.error("통계 데이터를 불러오는데 실패했습니다.");
       }
     };
 
     fetchStatistics();
     surveyStore.fetchSurvey(surveyId);
   }, [surveyId, surveyStore]);
+
+  if (!statistics)
+    return (
+      <div className="flex justify-center items-center min-h-[200px]">
+        <div className="text-center text-gray-500">
+          <p className="text-lg font-medium">아직 설문 응답이 없습니다.</p>
+          <p className="mt-2 text-sm">
+            링크를 공유하고 응답을 받아보세요.
+          </p>
+        </div>
+      </div>
+    );
 
   return statistics ? (
     <SectionListStatistics
