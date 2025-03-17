@@ -3,7 +3,7 @@ import Section from "@/models/section";
 import Input from "@/components/common/Input";
 import Panel, { PanelCap } from "@/components/common/Panel";
 import { useFormContext } from "react-hook-form";
-import { ChangeEvent, useEffect } from "react";
+import { ChangeEvent } from "react";
 
 interface Props {
   capTitle: string;

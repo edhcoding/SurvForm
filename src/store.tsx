@@ -1,7 +1,6 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { createContext, PropsWithChildren, useContext } from "react";
 import Section from "./models/section";
-import callApi from "@/utils/api";
 import { SectionData } from "@/types/app";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/firebaseApp";
