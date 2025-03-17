@@ -1,4 +1,5 @@
 # SurvForm - 설문 조사 플랫폼
+<img width="899" alt="스크린샷 2025-03-17 오후 5 19 47" src="https://github.com/user-attachments/assets/cb13a06b-5610-4450-b225-3ee65053ced4" />
 
 온라인 설문지 생성, 수정, 공유가 가능하고 실시간으로 수집된 데이터를 차트와 데이터를 통해 확인 가능한 플랫폼입니다.
 
